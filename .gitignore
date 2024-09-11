@@ -1,0 +1,37 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Compiled Go files
+*.exe
+*.test
+*.prof
+*.out
+*.test-infra
+
+# Dependency directories
+vendor/
+Godeps/
+.idea/
+.vscode/
+
+# Specific directories & files
+res/*
+godegraph.png
+internal/engine/logger/*
+
+# Binary files
+/bin/
+/pkg/
+
+# Log files and backups
+*.log
+*.swp
+*~
+
+# Test output files
+_test/
+
+# macOS specific files
+.DS_Store
