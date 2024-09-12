@@ -2,7 +2,7 @@ package rendering
 
 import (
 	"fmt"
-	"github.com/go-gl/gl/v4.1-core/gl"
+	"github.com/go-gl/gl/v4.2-core/gl"
 
 	"os"
 )
@@ -77,7 +77,7 @@ func verifyCompilation(shader uint32) error {
 	if success == gl.FALSE {
 		var length int32
 		gl.GetShaderiv(shader, gl.INFO_LOG_LENGTH, &length)
-		log := string(make([]byte, length))
+		log := string(make([]byte, length+1))
 		gl.GetShaderInfoLog(shader, length, nil, gl.Str(log))
 		return fmt.Errorf("shader compilation failed: %s", log)
 	}
@@ -90,7 +90,7 @@ func verifyProgramLink(program uint32) error {
 	if success == gl.FALSE {
 		var length int32
 		gl.GetProgramiv(program, gl.INFO_LOG_LENGTH, &length)
-		log := string(make([]byte, length))
+		log := string(make([]byte, length+1))
 		gl.GetProgramInfoLog(program, length, nil, gl.Str(log))
 		return fmt.Errorf("program linking failed: %s", log)
 	}
@@ -101,6 +101,6 @@ func (s *Shader) Use() {
 	gl.UseProgram(s.Program)
 }
 
-func (s *Shader) Delete() {
-	gl.DeleteShader(s.Program)
+func (s *Shader) DeleteProgram() {
+	gl.DeleteProgram(s.Program)
 }
